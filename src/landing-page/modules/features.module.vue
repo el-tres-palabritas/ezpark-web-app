@@ -8,11 +8,8 @@ export default {
   <section id="features" class="section">
     <div class="container">
       <div class="features-summary">
-        <h2 class="heading-2 features-title">Fácil y simple de usar</h2>
-        <p class="paragraph features-description">
-          Aplicación intuitiva, moderna y simplista para ofrecer la mejor experiencia a nuestros
-          usuarios.
-        </p>
+        <h2 class="heading-2 features-title">{{ $t('landingPage.features.title') }}</h2>
+        <p class="paragraph features-description">{{ $t('landingPage.features.description') }}</p>
       </div>
 
       <div class="features-list">
@@ -34,8 +31,8 @@ export default {
                 ></path>
               </svg>
             </div>
-            <p class="subtitle-1">Escoge el espacio</p>
-            <p class="body-2">Elije entre diversas opciones para estacionar en el mapa.</p>
+            <p class="subtitle-1">{{ $t('landingPage.features.subtitle1') }}</p>
+            <p class="body-2">{{ $t('landingPage.features.body1') }}</p>
           </div>
         </div>
         <div class="feature-item">
@@ -54,8 +51,8 @@ export default {
                 ></path>
               </svg>
             </div>
-            <p class="subtitle-1">Establece el tiempo</p>
-            <p class="body-2">Ingresa el rango de horas que deseas usar el servicio.</p>
+            <p class="subtitle-1">{{ $t('landingPage.features.subtitle2') }}</p>
+            <p class="body-2">{{ $t('landingPage.features.body2') }}</p>
           </div>
         </div>
         <div class="feature-item">
@@ -83,10 +80,8 @@ export default {
                 </defs>
               </svg>
             </div>
-            <p class="subtitle-1">Estaciona tu vehículo</p>
-            <p class="body-2">
-              Acércate al lugar del servicio y estaciona en el garaje seleccionado.
-            </p>
+            <p class="subtitle-1">{{ $t('landingPage.features.subtitle3') }}</p>
+            <p class="body-2">{{ $t('landingPage.features.body3') }}</p>
           </div>
         </div>
       </div>

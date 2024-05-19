@@ -38,9 +38,9 @@ const members = [
 <template>
   <section id="about-us" class="section">
     <div class="container">
-      <h2 class="heading-2 about-us-title">Sobre nosotros</h2>
+      <h2 class="heading-2 about-us-title">{{ $t('landingPage.aboutUs.title') }}</h2>
       <p class="body-1 about-us-description">
-        Conoce al equipo encargado de este proyecto innovador
+        {{ $t('landingPage.aboutUs.description') }}
       </p>
       <div class="team-container">
         <v-card v-for="member of members" :key="member.name">
@@ -52,7 +52,7 @@ const members = [
             class="team-member-picture"
           />
           <p class="body-2 team-member-name">{{ member.name }}</p>
-          <p class="body-2 team-member-role">{{ member.role }}</p>
+          <p class="body-2 team-member-role">{{ $t('landingPage.aboutUs.members.role') }}</p>
         </v-card>
       </div>
     </div>

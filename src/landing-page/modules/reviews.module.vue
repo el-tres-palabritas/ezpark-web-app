@@ -22,13 +22,14 @@ const carouselResponsiveOptions = [
     numScroll: 1
   }
 ]
+
 </script>
 
 <template>
   <section id="testimonials" class="section">
     <div class="container">
       <h3 class="heading-3 testimonials-title">
-        Con la confianza de miles de clientes satisfechos
+        {{ $t('landingPage.testimonials.title') }}
       </h3>
       <pv-carousel
         :value="reviews"

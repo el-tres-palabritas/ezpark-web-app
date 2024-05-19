@@ -47,9 +47,9 @@ const navLinks = [
         </ul>
         <div class="divider"></div>
         <div class="navbar--right__auth">
-          <router-link class="navlink register" to="/signup"> Registrar </router-link>
+          <router-link class="navlink register" to="/signup"> {{ $t('landingPage.navbar.register') }} </router-link>
           <router-link to="/login">
-            <v-button>Iniciar Sesión</v-button>
+            <v-button>{{ $t('landingPage.navbar.login') }}</v-button>
           </router-link>
         </div>
       </div>

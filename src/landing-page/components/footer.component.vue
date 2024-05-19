@@ -15,7 +15,7 @@ import InstagramIcon from '@/assets/svg/instagram.svg?component'
   <footer class="footer">
     <div class="footer__container--left">
       <logo-icon viewBox="0 0 167 52" class="footer-logo" />
-      <span class="copyright"> &copy;2024 EzPark. Todos los derechos reservados </span>
+      <span class="copyright"> &copy;2024 EzPark. {{ $t('landingPage.footer.copyright') }}</span>
     </div>
     <div class="footer__container--right">
       <a href="#" class="rrss">

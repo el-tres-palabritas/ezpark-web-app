@@ -7,11 +7,8 @@ export default {
 <template>
   <section id="pricing" class="section">
     <div class="container">
-      <h2 class="heading-2 pricing-title">Precios</h2>
-      <p class="body-1 pricing-description">
-        EzPark es de uso gratuito para todos. Solo paga por alquiler de estacionamientos y gane
-        dinero por sus servicios.
-      </p>
+      <h2 class="heading-2 pricing-title">{{ $t('landingPage.pricing.title') }}</h2>
+      <p class="body-1 pricing-description">{{ $t('landingPage.pricing.description') }}</p>
 
       <div class="pricing-summary">
         <ul class="pricing-summary-group">
@@ -38,9 +35,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">Decida el servicio según su comodidad</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle1') }}</h4>
               <p class="body-2">
-                Elija el tiempo de servicio y tarifa que se adecuen a su preferencia.
+                {{ $t('landingPage.pricing.body1') }}
               </p>
             </div>
           </li>
@@ -60,10 +57,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">Muchas tarifas, muchos garajes</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle2') }}</h4>
               <p class="body-2">
-                ¡No te quedes sin alternativas! Elija entre la gran variedad de estacionamientos
-                disponibles.
+                {{ $t('landingPage.pricing.body2') }}
               </p>
             </div>
           </li>
@@ -83,9 +79,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">Pagos rapidos y seguros</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle3') }}</h4>
               <p class="body-2">
-                Pasarela de pagos verificados por varias organizaciones y entidades bancarias.
+                {{ $t('landingPage.pricing.body3') }}
               </p>
             </div>
           </li>
@@ -108,9 +104,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">Establezca la tarifa por su estacionamiento</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle4') }}</h4>
               <p class="body-2">
-                Ajuste los precios y promocione su servicio a miles de conductores.
+                {{ $t('landingPage.pricing.body4') }}
               </p>
             </div>
           </li>
@@ -130,9 +126,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">Ganancias diaria</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle5') }}</h4>
               <p class="body-2">
-                Genere ingresos pasivos y/o activos diarios con nuestra aplicación.
+                {{ $t('landingPage.pricing.body5') }}
               </p>
             </div>
           </li>
@@ -166,8 +162,8 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">Transferencia de pagos al instante</h4>
-              <p class="body-2">Comunicación directa con entidades bancarias de su preferencia.</p>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle6') }}</h4>
+              <p class="body-2">{{ $t('landingPage.pricing.body6') }}</p>
             </div>
           </li>
         </ul>

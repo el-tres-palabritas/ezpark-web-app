@@ -12,10 +12,9 @@ import VCard from '../components/card.component.vue'
   <section id="product" class="section">
     <div class="container">
       <div class="product-section-summary">
-        <h2 class="heading-2 product-title">¿Qué es EzPark?</h2>
+        <h2 class="heading-2 product-title">{{ $t('landingPage.product.title') }}</h2>
         <p class="paragraph product-description">
-          Es una aplicación para encontrar, reservar y promocionar servicios de estacionamientos en
-          garajes residenciales.
+          {{ $t('landingPage.product.description') }}
         </p>
       </div>
       <div class="product-section-benefits">
@@ -35,7 +34,7 @@ import VCard from '../components/card.component.vue'
                 ></path>
               </svg>
             </div>
-            <p>Reduce el tiempo de búsqueda de estacionamiento.</p>
+            <p>{{ $t('landingPage.product.benefits.benefit1') }}</p>
           </article>
         </v-card>
         <v-card>
@@ -63,7 +62,7 @@ import VCard from '../components/card.component.vue'
                 </defs>
               </svg>
             </div>
-            <p>Ayuda a la reducción de la congestión vehicular.</p>
+            <p>{{ $t('landingPage.product.benefits.benefit2') }}</p>
           </article>
         </v-card>
         <v-card>
@@ -88,7 +87,7 @@ import VCard from '../components/card.component.vue'
                 ></path>
               </svg>
             </div>
-            <p>Una forma de generar ingresos adicionales por arrendamiento.</p>
+            <p>{{ $t('landingPage.product.benefits.benefit3') }}</p>
           </article>
         </v-card>
       </div>
