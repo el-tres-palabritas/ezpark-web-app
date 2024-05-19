@@ -34,7 +34,7 @@ import VCard from '../components/card.component.vue'
                 ></path>
               </svg>
             </div>
-            <p>{{ $t('landingPage.product.benefits.benefit1') }}</p>
+            <p>{{ $t('landingPage.product.benefits.benefit_1') }}</p>
           </article>
         </v-card>
         <v-card>
@@ -62,7 +62,7 @@ import VCard from '../components/card.component.vue'
                 </defs>
               </svg>
             </div>
-            <p>{{ $t('landingPage.product.benefits.benefit2') }}</p>
+            <p>{{ $t('landingPage.product.benefits.benefit_2') }}</p>
           </article>
         </v-card>
         <v-card>
@@ -87,7 +87,7 @@ import VCard from '../components/card.component.vue'
                 ></path>
               </svg>
             </div>
-            <p>{{ $t('landingPage.product.benefits.benefit3') }}</p>
+            <p>{{ $t('landingPage.product.benefits.benefit_3') }}</p>
           </article>
         </v-card>
       </div>

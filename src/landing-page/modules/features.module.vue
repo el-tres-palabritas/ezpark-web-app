@@ -31,8 +31,8 @@ export default {
                 ></path>
               </svg>
             </div>
-            <p class="subtitle-1">{{ $t('landingPage.features.subtitle1') }}</p>
-            <p class="body-2">{{ $t('landingPage.features.body1') }}</p>
+            <p class="subtitle-1">{{ $t('landingPage.features.subtitle_1') }}</p>
+            <p class="body-2">{{ $t('landingPage.features.body_1') }}</p>
           </div>
         </div>
         <div class="feature-item">
@@ -51,8 +51,8 @@ export default {
                 ></path>
               </svg>
             </div>
-            <p class="subtitle-1">{{ $t('landingPage.features.subtitle2') }}</p>
-            <p class="body-2">{{ $t('landingPage.features.body2') }}</p>
+            <p class="subtitle-1">{{ $t('landingPage.features.subtitle_2') }}</p>
+            <p class="body-2">{{ $t('landingPage.features.body_2') }}</p>
           </div>
         </div>
         <div class="feature-item">
@@ -80,8 +80,8 @@ export default {
                 </defs>
               </svg>
             </div>
-            <p class="subtitle-1">{{ $t('landingPage.features.subtitle3') }}</p>
-            <p class="body-2">{{ $t('landingPage.features.body3') }}</p>
+            <p class="subtitle-1">{{ $t('landingPage.features.subtitle_3') }}</p>
+            <p class="body-2">{{ $t('landingPage.features.body_3') }}</p>
           </div>
         </div>
       </div>

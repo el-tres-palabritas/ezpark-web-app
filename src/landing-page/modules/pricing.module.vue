@@ -35,9 +35,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle1') }}</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle_1') }}</h4>
               <p class="body-2">
-                {{ $t('landingPage.pricing.body1') }}
+                {{ $t('landingPage.pricing.body_1') }}
               </p>
             </div>
           </li>
@@ -57,9 +57,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle2') }}</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle_2') }}</h4>
               <p class="body-2">
-                {{ $t('landingPage.pricing.body2') }}
+                {{ $t('landingPage.pricing.body_2') }}
               </p>
             </div>
           </li>
@@ -79,9 +79,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle3') }}</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle_3') }}</h4>
               <p class="body-2">
-                {{ $t('landingPage.pricing.body3') }}
+                {{ $t('landingPage.pricing.body_3') }}
               </p>
             </div>
           </li>
@@ -104,9 +104,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle4') }}</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle_4') }}</h4>
               <p class="body-2">
-                {{ $t('landingPage.pricing.body4') }}
+                {{ $t('landingPage.pricing.body_4') }}
               </p>
             </div>
           </li>
@@ -126,9 +126,9 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle5') }}</h4>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle_5') }}</h4>
               <p class="body-2">
-                {{ $t('landingPage.pricing.body5') }}
+                {{ $t('landingPage.pricing.body_5') }}
               </p>
             </div>
           </li>
@@ -162,8 +162,8 @@ export default {
               </svg>
             </div>
             <div class="pricing-summary-item__info">
-              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle6') }}</h4>
-              <p class="body-2">{{ $t('landingPage.pricing.body6') }}</p>
+              <h4 class="subtitle-2">{{ $t('landingPage.pricing.subtitle_6') }}</h4>
+              <p class="body-2">{{ $t('landingPage.pricing.body_6') }}</p>
             </div>
           </li>
         </ul>

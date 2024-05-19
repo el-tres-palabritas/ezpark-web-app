@@ -2,10 +2,10 @@
   "landingPage": {
     "hero": {
       "title": {
-        "part1": "Park",
-        "part2": "quickly",
-        "part3": "and save",
-        "part4": "time"
+        "part_1": "Park",
+        "part_2": "quickly",
+        "part_3": "and save",
+        "part_4": "time"
       },
       "subtitle": "Easily find parking from the comfort of your device",
       "buttonText": "Learn more"
@@ -21,36 +21,36 @@
       "title": "What is EzPark?",
       "description": "It's an app to find, reserve, and promote parking services in residential garages.",
       "benefits": {
-        "benefit1": "Reduces the time spent searching for parking.",
-        "benefit2": "Helps reduce traffic congestion.",
-        "benefit3": "A way to generate additional income through leasing."
+        "benefit_1": "Reduces the time spent searching for parking.",
+        "benefit_2": "Helps reduce traffic congestion.",
+        "benefit_3": "A way to generate additional income through leasing."
       }
     },
     "features": {
       "title": "Easy and Simple to Use",
       "description": "Intuitive, modern, and simplistic application to offer the best experience to our users.",
-      "subtitle1": "Choose the Space",
-      "body1": "Choose from various options to park on the map.",
-      "subtitle2": "Set the Time",
-      "body2": "Enter the range of hours you want to use the service.",
-      "subtitle3": "Park Your Vehicle",
-      "body3": "Get close to the service location and park in the selected garage."
+      "subtitle_1": "Choose the Space",
+      "body_1": "Choose from various options to park on the map.",
+      "subtitle_2": "Set the Time",
+      "body_2": "Enter the range of hours you want to use the service.",
+      "subtitle_3": "Park Your Vehicle",
+      "body_3": "Get close to the service location and park in the selected garage."
     },
     "pricing": {
       "title": "Pricing",
       "description": "EzPark is free for all users. Only pay for parking rentals and earn money for your services.",
-      "subtitle1": "Choose the service at your convenience",
-      "body1": "Choose the service time and rate that suits your preference.",
-      "subtitle2": "Many rates, many garages",
-      "body2": "Don't run out of alternatives! Choose from the wide variety of available parking spaces.",
-      "subtitle3": "Quick and secure payments",
-      "body3": "Payments gateway verified by multiple organizations and banking entities.",
-      "subtitle4": "Set the rate for your parking",
-      "body4": "Adjust the prices and promote your service to thousands of drivers.",
-      "subtitle5": "Daily earnings",
-      "body5": "Generate passive and/or active daily income with our application.",
-      "subtitle6": "Instant payment transfer",
-      "body6": "Direct communication with banking entities of your preference."
+      "subtitle_1": "Choose the service at your convenience",
+      "body_1": "Choose the service time and rate that suits your preference.",
+      "subtitle_2": "Many rates, many garages",
+      "body_2": "Don't run out of alternatives! Choose from the wide variety of available parking spaces.",
+      "subtitle_3": "Quick and secure payments",
+      "body_3": "Payments gateway verified by multiple organizations and banking entities.",
+      "subtitle_4": "Set the rate for your parking",
+      "body_4": "Adjust the prices and promote your service to thousands of drivers.",
+      "subtitle_5": "Daily earnings",
+      "body_5": "Generate passive and/or active daily income with our application.",
+      "subtitle_6": "Instant payment transfer",
+      "body_6": "Direct communication with banking entities of your preference."
     },
     "testimonials": {
       "title": "With the trust of thousands of satisfied customers"

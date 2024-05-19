@@ -16,10 +16,10 @@ import HeroIllustration from '@/assets/svg/hero-illustration.svg?component'
       <div class="hero-container">
         <div class="hero-container--left">
           <h1 class="font-rubik hero-title">
-            {{ $t('landingPage.hero.title.part1') }}
-            <span class="font-rubik">{{ $t('landingPage.hero.title.part2') }}</span>
-            {{ $t('landingPage.hero.title.part3') }}
-            <span class="font-rubik">{{ $t('landingPage.hero.title.part4') }}</span>
+            {{ $t('landingPage.hero.title.part_1') }}
+            <span class="font-rubik">{{ $t('landingPage.hero.title.part_2') }}</span>
+            {{ $t('landingPage.hero.title.part_3') }}
+            <span class="font-rubik">{{ $t('landingPage.hero.title.part_4') }}</span>
           </h1>
           <h2 class="font-rubik hero-subtitle">
             {{ $t('landingPage.hero.subtitle') }}
