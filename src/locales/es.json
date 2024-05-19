@@ -2,10 +2,10 @@
   "landingPage": {
     "hero": {
       "title": {
-        "part1": "Estaciona",
-        "part2": "rápido",
-        "part3": "y ahorra",
-        "part4": "tiempo"
+        "part_1": "Estaciona",
+        "part_2": "rápido",
+        "part_3": "y ahorra",
+        "part_4": "tiempo"
       },
       "subtitle": "Encuentra fácilmente estacionamiento desde la comodidad de tu dispositivo",
       "buttonText": "Conocer más"
@@ -21,36 +21,36 @@
       "title": "¿Qué es EzPark?",
       "description": "Es una aplicación para encontrar, reservar y promocionar servicios de estacionamientos en garajes residenciales.",
       "benefits": {
-        "benefit1": "Reduce el tiempo de búsqueda de estacionamiento.",
-        "benefit2": "Ayuda a la reducción de la congestión vehicular.",
-        "benefit3": "Una forma de generar ingresos adicionales por arrendamiento."
+        "benefit_1": "Reduce el tiempo de búsqueda de estacionamiento.",
+        "benefit_2": "Ayuda a la reducción de la congestión vehicular.",
+        "benefit_3": "Una forma de generar ingresos adicionales por arrendamiento."
       }
     },
     "features": {
       "title": "Fácil y Simple de Usar",
       "description": "Aplicación intuitiva, moderna y simplista para ofrecer la mejor experiencia a nuestros usuarios.",
-      "subtitle1": "Escoge el Espacio",
-      "body1": "Elige entre diversas opciones para estacionar en el mapa.",
-      "subtitle2": "Establece el Tiempo",
-      "body2": "Ingresa el rango de horas que deseas usar el servicio.",
-      "subtitle3": "Estacione su vehículo",
-      "body3": "Acércate al punto de servicio y aparca en el garaje seleccionado."
+      "subtitle_1": "Escoge el Espacio",
+      "body_1": "Elige entre diversas opciones para estacionar en el mapa.",
+      "subtitle_2": "Establece el Tiempo",
+      "body_2": "Ingresa el rango de horas que deseas usar el servicio.",
+      "subtitle_3": "Estacione su vehículo",
+      "body_3": "Acércate al punto de servicio y aparca en el garaje seleccionado."
     },
     "pricing": {
       "title": "Precios",
       "description": "EzPark es gratuito para todos los usuarios. Solo pague por alquileres de estacionamiento y gane dinero por sus servicios.",
-      "subtitle1": "Elija el servicio a su conveniencia",
-      "body1": "Elija el tiempo de servicio y la tarifa que se adapte a su preferencia.",
-      "subtitle2": "Muchas tarifas, muchos garajes",
-      "body2": "¡No se quede sin alternativas! Elija entre la amplia variedad de espacios de estacionamiento disponibles.",
-      "subtitle3": "Pagos rápidos y seguros",
-      "body3": "Pasarela de pagos verificada por múltiples organizaciones y entidades bancarias.",
-      "subtitle4": "Establezca la tarifa de su estacionamiento",
-      "body4": "Ajuste los precios y promocione su servicio a miles de conductores.",
-      "subtitle5": "Ganancias diarias",
-      "body5": "Genere ingresos pasivos y/o activos diarios con nuestra aplicación.",
-      "subtitle6": "Transferencia de pagos al instante",
-      "body6": "Comunicación directa con entidades bancarias de su preferencia."
+      "subtitle_1": "Elija el servicio a su conveniencia",
+      "body_1": "Elija el tiempo de servicio y la tarifa que se adapte a su preferencia.",
+      "subtitle_2": "Muchas tarifas, muchos garajes",
+      "body_2": "¡No se quede sin alternativas! Elija entre la amplia variedad de espacios de estacionamiento disponibles.",
+      "subtitle_3": "Pagos rápidos y seguros",
+      "body_3": "Pasarela de pagos verificada por múltiples organizaciones y entidades bancarias.",
+      "subtitle_4": "Establezca la tarifa de su estacionamiento",
+      "body_4": "Ajuste los precios y promocione su servicio a miles de conductores.",
+      "subtitle_5": "Ganancias diarias",
+      "body_5": "Genere ingresos pasivos y/o activos diarios con nuestra aplicación.",
+      "subtitle_6": "Transferencia de pagos al instante",
+      "body_6": "Comunicación directa con entidades bancarias de su preferencia."
     },
     "testimonials": {
       "title": "Con la confianza de miles de clientes satisfechos"
