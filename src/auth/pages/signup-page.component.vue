@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import SignUpComponent from '@/public/components/signup.component.vue'
+import SignUpComponent from '../components/signup.component.vue'
 </script>
 
 <template>

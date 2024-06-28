@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '@/landing-page/pages/index.page.vue'
-import LogInPage from '@/public/pages/login/login-page.component.vue'
-import SignUpPage from '@/public/pages/register/signup-page.component.vue'
-import RecoveryPage from '@/auth/pages/recovery.page.vue'
+
 import FindYourParkPage from '@/public/pages/find-your-park.page.vue'
-import ParkingDetailPage from '@/parkings/pages/parking-detail.page.vue'
 import RegisterPark from '@/public/pages/register-park.page.vue'
 import NotFoundPage from '@/public/pages/not-found.page.vue'
+
+import ParkingDetailPage from '@/parkings/pages/parking-detail.page.vue'
+
+import LogInPage from '@/auth/pages/login-page.component.vue'
+import SignUpPage from '@/auth/pages/signup-page.component.vue'
+import RecoveryPage from '@/auth/pages/recovery.page.vue'
 
 const router = createRouter({
   history: createWebHistory(),

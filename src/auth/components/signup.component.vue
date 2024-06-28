@@ -1,62 +1,59 @@
 <script>
 import { AuthService } from '@/auth/services/auth.service.js'
 
-
 export default {
   name: 'sign-up-component',
-  data(){
-    return{
-      country:'',
-      fullname:'',
-      email:'',
-      password:'',
-      confirmPassword:'',
-      phoneNumber:'',
-      newsCheck:'',
-      privacyCheck:'',
+  data() {
+    return {
+      country: '',
+      fullname: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      phoneNumber: '',
+      newsCheck: '',
+      privacyCheck: '',
       authService: new AuthService()
     }
   },
 
-  created() {
+  created() {},
 
-  },
-
-  methods:{
-    register(event){
+  methods: {
+    register(event) {
       event.preventDefault()
-      this.authService.signUp(
-        this.fullname,
-        this.password,
-        this.email,
-        this.country,
-        this.phoneNumber,
-        this.newsCheck,
-        this.privacyCheck
-
-      ).then(() => {
-        this.$toast.add({
-          severity: "success",
-          summary: "Success",
-          detail: "Redirecting to login...",
-          life: 2000
-        });
-        setTimeout(() => {
-          this.$router.push("/login");
-        }, 2000);
-      }).catch(() => {
-        this.$toast.add({
-          severity: "error",
-          summary: "Error",
-          detail: "Error while registering user. Please try again.",
-          life: 1000
-        });
-      })
-
-      }
+      this.authService
+        .signUp(
+          this.fullname,
+          this.password,
+          this.email,
+          this.country,
+          this.phoneNumber,
+          this.newsCheck,
+          this.privacyCheck
+        )
+        .then(() => {
+          this.$toast.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Redirecting to login...',
+            life: 2000
+          })
+          setTimeout(() => {
+            this.$router.push('/login')
+          }, 2000)
+        })
+        .catch(() => {
+          this.$toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Error while registering user. Please try again.',
+            life: 1000
+          })
+        })
+    }
   }
 }
-
 </script>
 
 <script setup>
@@ -66,12 +63,11 @@ import PvCascadeSelect from 'primevue/cascadeselect'
 import PvInputNumber from 'primevue/inputnumber'
 import PvCheckbox from 'primevue/checkbox'
 import PvButton from 'primevue/button'
-
 </script>
 
 <template>
   <section class="form-container">
-    <form class="form" v-on:submit="register($event)" >
+    <form class="form" v-on:submit="register($event)">
       <div class="form-item">
         <div class="logo-container">
           <img alt="Logo" class="logo" src="../../assets/logo.svg" />
@@ -128,7 +124,12 @@ import PvButton from 'primevue/button'
             <label for="condition1">I want to receive news from EzPark via email</label>
           </div>
           <div class="condition-item">
-            <pv-checkbox class="checkbox" v-model="privacyCheck" inputId="condition1" :binary="true" />
+            <pv-checkbox
+              class="checkbox"
+              v-model="privacyCheck"
+              inputId="condition1"
+              :binary="true"
+            />
             <label for="condition2">I have read and agree with the Privacy Policy</label>
           </div>
         </div>
