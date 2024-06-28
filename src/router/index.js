@@ -21,10 +21,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/find-your-park'
-    },
-    {
-      path: '/landing-page',
       component: LandingPage,
       meta: {
         auth: false
