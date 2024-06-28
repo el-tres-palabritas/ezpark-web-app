@@ -21,6 +21,12 @@ class ReviewService {
 
     return response.data
   }
+
+  async createReview({ rating, parkingId, userId, comment }) {
+    const response = await this.axiosInstance.post('/', { rating, parkingId, userId, comment })
+
+    return response.data
+  }
 }
 
 export default ReviewService
