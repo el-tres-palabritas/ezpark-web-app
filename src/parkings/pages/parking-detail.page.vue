@@ -9,6 +9,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import ParkingApiService from '../services/parkingApi.service'
 import { UserService } from '@/auth/services/user.service'
+import useAuth from '@/store/useAuth'
 
 export default {
   name: 'parking-detail-page',
@@ -19,6 +20,7 @@ export default {
     const parkingService = new ParkingApiService()
     const userService = new UserService()
 
+    const authStore = useAuth()
     const loading = ref(true)
     const parking = ref(null)
     const owner = ref(null)
@@ -67,13 +69,11 @@ export default {
       .getParkingsById(parkingId)
       .then((parkingData) => {
         parking.value = parkingData
-        console.log(parking.value)
 
         return userService.getUserById(parkingData.userId)
       })
       .then((userData) => {
         owner.value = userData
-        console.log(owner.value)
       })
       .catch(console.error)
       .finally(() => {
@@ -99,7 +99,8 @@ export default {
       owner,
       loading,
       parkingImages,
-      carouselResponsiveOptions
+      carouselResponsiveOptions,
+      authStore
     }
   }
 }
@@ -118,7 +119,7 @@ export default {
       </template>
       <template v-else-if="!loading && parking && owner">
         <h2 class="parking-detail-address">
-          {{ parking.address }}
+          {{ parking.address }} <span v-if="owner.id === authStore.user.id">(Your garage)</span>
         </h2>
         <p class="parking-detail-complement">
           See the images of the parking lot and its description. If you like it, you can reserve it
@@ -157,7 +158,12 @@ export default {
                 <span class="parking-reviews-btn-rate">0/5</span>
               </pv-button>
               <p class="parking-fare">Price: S/. {{ parking.price.toFixed(2) }} / hour</p>
-              <pv-button label="Reserve now" class="parking-reserve-btn" severity="contrast" />
+              <pv-button
+                label="Reserve now"
+                class="parking-reserve-btn"
+                severity="contrast"
+                :disabled="owner.id === authStore.user.id"
+              />
             </div>
           </div>
         </div>
