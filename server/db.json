@@ -119,6 +119,26 @@
       "newsCheck": false,
       "privacyCheck": false,
       "id": 12
+    },
+    {
+      "fullname": "",
+      "password": "",
+      "email": "",
+      "country": "",
+      "phoneNumber": "",
+      "newsCheck": "",
+      "privacyCheck": "",
+      "id": 13
+    },
+    {
+      "fullname": "",
+      "password": "",
+      "email": "",
+      "country": "",
+      "phoneNumber": "",
+      "newsCheck": "",
+      "privacyCheck": "",
+      "id": 14
     }
   ],
   "parkings": [
