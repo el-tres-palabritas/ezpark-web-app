@@ -1,92 +1,92 @@
-<script setup>
-import VBaseLayout from '@/public/layout/base.layout.vue'
+<script>
 import BgIllustration from '@/assets/svg/bg-illustration.svg?component'
+import VBaseLayout from '@/public/layout/base.layout.vue'
 import PvCarousel from 'primevue/carousel'
 import PvFieldset from 'primevue/fieldset'
 import PvButton from 'primevue/button'
+
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import ParkingApiService from '../services/parkingApi.service'
 
-const route = useRoute()
-const parkingId = route.params.id
-const parkingService = new ParkingApiService()
-const loading = ref(true)
-const parking = ref(null)
+export default {
+  name: 'parking-detail-page',
+  components: { BgIllustration, VBaseLayout, PvCarousel, PvFieldset, PvButton },
+  setup() {
+    const route = useRoute()
+    const parkingId = route.params.id
+    const parkingService = new ParkingApiService()
+    const loading = ref(true)
+    const parking = ref(null)
 
-console.log(parkingId)
+    const parkingImages = [
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 1'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 2'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 3'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 4'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 5'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 6'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 7'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 8'
+      },
+      {
+        src: 'https://picsum.photos/200/300',
+        alt: 'Parking image 9'
+      }
+    ]
 
-const parkingImages = [
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 1'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 2'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 3'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 4'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 5'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 6'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 7'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 8'
-  },
-  {
-    src: 'https://picsum.photos/200/300',
-    alt: 'Parking image 9'
-  }
-]
-
-parkingService
-  .getParkingsById(parkingId)
-  .then((data) => {
     loading.value = true
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        parking.value = data
-        resolve(data)
-      }, 1000)
-    })
-  })
-  .then(([data]) => {
-    parking.value = data
-    console.log(parking.value)
-  })
-  .catch(console.error)
-  .finally(() => (loading.value = false))
 
-const carouselResponsiveOptions = [
-  {
-    breakpoint: '1080px',
-    numVisible: 2,
-    numScroll: 2
-  },
-  {
-    breakpoint: '768px',
-    numVisible: 1,
-    numScroll: 1
+    parkingService
+      .getParkingsById(parkingId)
+      .then((data) => (parking.value = data))
+      .catch(console.error)
+      .finally(() => (loading.value = false))
+
+    const carouselResponsiveOptions = [
+      {
+        breakpoint: '1080px',
+        numVisible: 2,
+        numScroll: 2
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 1,
+        numScroll: 1
+      }
+    ]
+    return {
+      parkingId,
+      parking,
+      loading,
+      parkingImages,
+      carouselResponsiveOptions
+    }
   }
-]
-
-console.log(parking.value)
+}
 </script>
 
 <template>
@@ -102,7 +102,7 @@ console.log(parking.value)
       </template>
       <template v-else-if="!loading && parking">
         <h2 class="parking-detail-address">
-          {{ parking.address }} {{ parking.number }}, {{ parking.city }}
+          {{ parking.address }}
         </h2>
         <p class="parking-detail-complement">
           See the images of the parking lot and its description. If you like it, you can reserve it
@@ -126,9 +126,9 @@ console.log(parking.value)
             parking.description
           }}</pv-fieldset>
           <pv-fieldset legend="Dimensions" class="parking-dimensions-fieldset">
-            <p>Width: {{ parking.dimensions.width }} m</p>
-            <p>Length: {{ parking.dimensions.length }} m</p>
-            <p>Height: {{ parking.dimensions.height }} m</p>
+            <p>Width: {{ parking.width }} m</p>
+            <p>Length: {{ parking.length }} m</p>
+            <p>Height: {{ parking.height }} m</p>
             <p>Max capacity: {{ parking.max_capacity }} spaces</p>
             <p>Available spaces: 2 spaces</p>
           </pv-fieldset>
@@ -138,7 +138,7 @@ console.log(parking.value)
                 <span class="parking-review-btn-label">Ratings & Reviews &rarr;</span>
                 <span class="parking-reviews-btn-rate">{{ parking.rating }}/5</span>
               </pv-button>
-              <p class="parking-fare">Price: S/. {{ parking.price_per_hour }} / hour</p>
+              <p class="parking-fare">Price: S/. {{ parking.price.toFixed(2) }} / hour</p>
               <pv-button label="Reserve now" class="parking-reserve-btn" severity="contrast" />
             </div>
           </div>
