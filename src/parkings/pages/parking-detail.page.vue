@@ -8,6 +8,7 @@ import PvButton from 'primevue/button'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import ParkingApiService from '../services/parkingApi.service'
+import { UserService } from '@/auth/services/user.service'
 
 export default {
   name: 'parking-detail-page',
@@ -16,8 +17,11 @@ export default {
     const route = useRoute()
     const parkingId = route.params.id
     const parkingService = new ParkingApiService()
+    const userService = new UserService()
+
     const loading = ref(true)
     const parking = ref(null)
+    const owner = ref(null)
 
     const parkingImages = [
       {
@@ -59,12 +63,22 @@ export default {
     ]
 
     loading.value = true
-
     parkingService
       .getParkingsById(parkingId)
-      .then((data) => (parking.value = data))
+      .then((parkingData) => {
+        parking.value = parkingData
+        console.log(parking.value)
+
+        return userService.getUserById(parkingData.userId)
+      })
+      .then((userData) => {
+        owner.value = userData
+        console.log(owner.value)
+      })
       .catch(console.error)
-      .finally(() => (loading.value = false))
+      .finally(() => {
+        loading.value = false
+      })
 
     const carouselResponsiveOptions = [
       {
@@ -78,9 +92,11 @@ export default {
         numScroll: 1
       }
     ]
+
     return {
       parkingId,
       parking,
+      owner,
       loading,
       parkingImages,
       carouselResponsiveOptions
@@ -100,7 +116,7 @@ export default {
           <p class="loading-complement">Loading parking, please wait a few seconds</p>
         </div>
       </template>
-      <template v-else-if="!loading && parking">
+      <template v-else-if="!loading && parking && owner">
         <h2 class="parking-detail-address">
           {{ parking.address }}
         </h2>
@@ -122,21 +138,23 @@ export default {
           </template>
         </pv-carousel>
         <div class="parking-info-container">
-          <pv-fieldset legend="Description" class="parking-description-fieldset">{{
-            parking.description
-          }}</pv-fieldset>
+          <pv-fieldset legend="Description" class="parking-description-fieldset">
+            {{ parking.description }}
+            <p>Owner: {{ owner.fullName }}</p>
+            <p>
+              Email: <a :href="`mailto:${owner.email}`" target="_blank">{{ owner.email }}</a>
+            </p>
+          </pv-fieldset>
           <pv-fieldset legend="Dimensions" class="parking-dimensions-fieldset">
             <p>Width: {{ parking.width }} m</p>
             <p>Length: {{ parking.length }} m</p>
             <p>Height: {{ parking.height }} m</p>
-            <p>Max capacity: {{ parking.max_capacity }} spaces</p>
-            <p>Available spaces: 2 spaces</p>
           </pv-fieldset>
           <div class="parking-cta-wrapper">
             <div class="parking-cta-container">
               <pv-button class="parking-reviews-btn">
                 <span class="parking-review-btn-label">Ratings & Reviews &rarr;</span>
-                <span class="parking-reviews-btn-rate">{{ parking.rating }}/5</span>
+                <span class="parking-reviews-btn-rate">0/5</span>
               </pv-button>
               <p class="parking-fare">Price: S/. {{ parking.price.toFixed(2) }} / hour</p>
               <pv-button label="Reserve now" class="parking-reserve-btn" severity="contrast" />
