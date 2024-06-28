@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class ParkingApiService {
+class ReservationService {
   /** @type {import('axios').AxiosInstance} */
   axiosInstance
 
@@ -29,4 +29,4 @@ class ParkingApiService {
   }
 }
 
-export default ParkingApiService
+export default ReservationService

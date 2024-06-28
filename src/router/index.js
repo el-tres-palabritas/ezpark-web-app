@@ -8,6 +8,7 @@ import YourGaragesPage from '@/public/pages/your-garages.page.vue'
 import NotFoundPage from '@/public/pages/not-found.page.vue'
 
 import ParkingDetailPage from '@/parkings/pages/parking-detail.page.vue'
+import ParkingReviewPage from '@/parkings/pages/parking-reviews.page.vue'
 
 import LogInPage from '@/auth/pages/login-page.component.vue'
 import SignUpPage from '@/auth/pages/signup-page.component.vue'
@@ -59,6 +60,13 @@ const router = createRouter({
     {
       path: '/find-your-park/parking/:id',
       component: ParkingDetailPage,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/find-your-park/parking/:id/reviews',
+      component: ParkingReviewPage,
       meta: {
         auth: true
       }

@@ -153,10 +153,16 @@ export default {
           </pv-fieldset>
           <div class="parking-cta-wrapper">
             <div class="parking-cta-container">
-              <pv-button class="parking-reviews-btn">
-                <span class="parking-review-btn-label">Ratings & Reviews &rarr;</span>
-                <span class="parking-reviews-btn-rate">0/5</span>
-              </pv-button>
+              <router-link
+                :to="`/find-your-park/parking/${parkingId}/reviews`"
+                style="text-decoration: none"
+              >
+                <pv-button class="parking-reviews-btn">
+                  <span class="parking-review-btn-label">Ratings & Reviews &rarr;</span>
+                  <span class="parking-reviews-btn-rate">0/5</span>
+                </pv-button>
+              </router-link>
+
               <p class="parking-fare">Price: S/. {{ parking.price.toFixed(2) }} / hour</p>
               <pv-button
                 label="Reserve now"
@@ -277,6 +283,7 @@ export default {
   background: #ef6c42;
   border: 0;
   outline-color: #ef6c42;
+  text-decoration: none;
 }
 .parking-review-btn-label {
   font-size: 1.25rem;
