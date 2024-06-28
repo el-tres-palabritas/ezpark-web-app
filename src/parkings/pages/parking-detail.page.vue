@@ -403,11 +403,5 @@ export default {
   .not-found-description {
     font-size: 14px;
   }
-  .loading-icon {
-    font-size: 64px;
-  }
-  .loading-complement {
-    font-size: 16px;
-  }
 }
 </style>

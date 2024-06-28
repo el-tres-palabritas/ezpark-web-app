@@ -7,3 +7,26 @@ body {
     -apple-system,
     sans-serif;
 }
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: -2.5rem;
+}
+.loading-icon {
+  font-size: 3rem;
+  color: #3c4e67;
+}
+.loading-complement {
+  font-size: 1.25rem;
+}
+
+.loading-icon {
+  font-size: 64px;
+}
+.loading-complement {
+  font-size: 16px;
+}

@@ -4,6 +4,7 @@ import LandingPage from '@/landing-page/pages/index.page.vue'
 
 import FindYourParkPage from '@/public/pages/find-your-park.page.vue'
 import RegisterPark from '@/public/pages/register-park.page.vue'
+import YourGaragesPage from '@/public/pages/your-garages.page.vue'
 import NotFoundPage from '@/public/pages/not-found.page.vue'
 
 import ParkingDetailPage from '@/parkings/pages/parking-detail.page.vue'
@@ -65,6 +66,13 @@ const router = createRouter({
     {
       path: '/register-park',
       component: RegisterPark,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/your-garages',
+      component: YourGaragesPage,
       meta: {
         auth: true
       }

@@ -9,9 +9,8 @@ const useParkings = defineStore('parkings', {
     yourParkings: []
   }),
   actions: {
-    async loadParkings(userId) {
+    async loadParkings() {
       this.parkings = await parkingService.getParkings()
-      this.yourParkings = await parkingService.getParkingByUserId(userId)
     },
     async createParking(parking) {
       await parkingService.postParking(parking)

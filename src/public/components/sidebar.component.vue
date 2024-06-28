@@ -4,6 +4,7 @@ import PvSidebar from 'primevue/sidebar'
 import PvButton from 'primevue/button'
 import PvAvatar from 'primevue/avatar'
 import useAuth from '@/store/useAuth'
+import useParkings from '@/store/useParkings'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -16,10 +17,13 @@ export default {
   setup() {
     const visible = ref(false)
     const authStore = useAuth()
+    const parkingStore = useParkings()
     const router = useRouter()
 
     const handleSignOut = () => {
       authStore.logout()
+      parkingStore.$reset()
+
       router.push('/login')
     }
 
