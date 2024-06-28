@@ -7,13 +7,16 @@ import { reactive } from 'vue'
 import useAuth from '@/store/useAuth'
 import { useRouter } from 'vue-router'
 
+import LogoIcon from '@/assets/svg/logo.svg?component'
+
 export default {
   name: 'sign-up-component',
   components: {
     PvInputText,
     PvPassword,
     PvCheckbox,
-    PvButton
+    PvButton,
+    LogoIcon
   },
   setup() {
     const router = useRouter()
@@ -75,7 +78,9 @@ export default {
     <form class="form" @submit.prevent="handleSubmit">
       <div class="form-item">
         <div class="logo-container">
-          <img alt="Logo" class="logo" src="../../assets/logo.svg" />
+          <div class="logo">
+            <logo-icon />
+          </div>
         </div>
         <h1 class="form-title">Sign Up</h1>
       </div>

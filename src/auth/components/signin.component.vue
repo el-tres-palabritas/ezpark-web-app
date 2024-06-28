@@ -6,13 +6,15 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { AuthService } from '../services/auth.service'
 import useAuth from '@/store/useAuth'
+import LogoIcon from '@/assets/svg/logo.svg?component'
 
 export default {
   name: 'sign-in-component',
   components: {
     PvInputText,
     PvPassword,
-    PvButton
+    PvButton,
+    LogoIcon
   },
   setup() {
     const router = useRouter()
@@ -44,7 +46,9 @@ export default {
     <form class="form" @submit.prevent="handleLogin()">
       <div class="form-item">
         <div class="logo-container">
-          <img alt="Logo" class="logo" src="../../assets/logo.svg" />
+          <div class="logo">
+            <logo-icon />
+          </div>
         </div>
         <h1 class="form-title">Sign In</h1>
       </div>
@@ -71,7 +75,7 @@ export default {
       <div class="form-item">
         <pv-button class="form-btn" type="submit" id="submit" label="Login" />
       </div>
-      <router-link class="forgot-password-link" to="/recovery">Forgot password?</router-link>
+      <!-- <router-link class="forgot-password-link" to="/recovery">Forgot password?</router-link> -->
       <p class="signup-link">
         Don't have an account yet?
         <router-link to="/signup">Sign up</router-link>
