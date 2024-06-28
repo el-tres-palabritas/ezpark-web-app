@@ -26,12 +26,14 @@ async function renderMarkers(map) {
     /** @type {google.maps.MarkerLibrary} */
     const { AdvancedMarkerElement } = await window.google.maps.importLibrary('marker')
 
+    console.log(props.markers)
+
     props.markers.forEach((marker) => {
       const advancedMarker = new AdvancedMarkerElement({
         map,
         position: {
-          lat: marker.lat,
-          lng: marker.lng
+          lat: marker.latitude,
+          lng: marker.longitude
         }
       })
       advancedMarker.addListener('click', () => emits('clickMarker', marker))

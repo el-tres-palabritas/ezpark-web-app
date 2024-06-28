@@ -1,124 +1,97 @@
 <script>
-export default {
-  name: 'register-park-page'
-}
-</script>
-
-<script setup>
 import VBaseLayout from '@/public/layout/base.layout.vue'
 import VGoogleAutocomplete from '@/public/components/google-autocomplete.component.vue'
 import VGoogleMap from '../components/google-map.component.vue'
+
 import PvInputText from 'primevue/inputtext'
 import PvInputMask from 'primevue/inputmask'
 import PvButton from 'primevue/button'
 import PvDivider from 'primevue/divider'
+
 import { reactive, ref } from 'vue'
-import ParkingApiService from '@/parkings/services/parkingApi.service'
 import { useRouter } from 'vue-router'
+import useParkings from '@/store/useParkings'
+import useAuth from '@/store/useAuth'
 
-const MAP_DEFAULT_CENTER = { lat: -12.1061161, lng: -77.026921 }
-const MAP_DEFAULT_ZOOM = 18
+export default {
+  name: 'register-park-page',
+  components: {
+    VBaseLayout,
+    VGoogleAutocomplete,
+    VGoogleMap,
+    PvInputText,
+    PvInputMask,
+    PvButton,
+    PvDivider
+  },
+  setup() {
+    const MAP_DEFAULT_CENTER = { lat: -12.1061161, lng: -77.026921 }
+    const MAP_DEFAULT_ZOOM = 18
 
-const map = ref(null)
-const parkingService = new ParkingApiService()
-const router = useRouter()
+    const router = useRouter()
+    const parkingStore = useParkings()
+    const authStore = useAuth()
 
-const formState = reactive({
-  address: '',
-  streetNumber: '',
-  lat: 0,
-  lng: 0,
-  city: '',
-  state: '',
-  spaces: 0,
-  length: 0,
-  width: 0,
-  height: 0,
-  startTime: '',
-  endTime: '',
-  phone: '',
-  fare: 0,
-  description: ''
-})
+    const map = ref(null)
+    const formState = reactive({
+      address: '',
+      width: 0,
+      length: 0,
+      height: 0,
+      price: 0,
+      phone: '',
+      description: '',
+      latitude: 0,
+      longitude: 0
+    })
+    const loading = ref(false)
 
-const loading = ref(false)
+    /** @param {google.maps.places.PlaceResult} place */
+    const handleAutocompletePlaceChanged = (place) => {
+      const {
+        geometry: { location },
+        formatted_address
+      } = place
 
-/** @param {google.maps.places.PlaceResult} place */
-function handleAutocompletePlaceChanged(place) {
-  const {
-    geometry: { location },
-    formatted_address,
-    address_components
-  } = place
+      formState.address = formatted_address
 
-  console.log('[ADDRESS-COMPONENT]', address_components)
+      if (!location) return
+      map.value.panTo(location)
+      map.value.setZoom(18)
 
-  address_components.forEach((component) => {
-    if (component.types.includes('street_number')) {
-      formState.streetNumber = component.long_name
+      formState.latitude = location.lat()
+      formState.longitude = location.lng()
     }
-    if (component.types.includes('locality')) {
-      formState.city = component.long_name
-    }
-    if (component.types.includes('administrative_area_level_2')) {
-      formState.state = component.long_name
-    }
-  })
 
-  formState.address = formatted_address
+    const handlePostGarage = async () => {
+      if (!formState.address) return
 
-  if (!location) return
-  map.value.panTo(location)
-  map.value.setZoom(18)
-
-  formState.lat = location.lat()
-  formState.lng = location.lng()
-}
-
-function handlePostGarage() {
-  if (!formState.address) return
-  const parkingDTOPost = {
-    id: Math.floor(Math.random() * (1000 - 20 + 1)) + 20,
-    owner_id: 1,
-    address: formState.address,
-    number: formState.streetNumber,
-    city: formState.city,
-    state: formState.state,
-    dimensions: {
-      width: formState.width,
-      length: formState.length,
-      height: formState.height
-    },
-    schedule: {
-      start_time: formState.startTime,
-      end_time: formState.endTime
-    },
-    phone: formState.phone,
-    price_per_hour: formState.fare,
-    description: formState.description,
-    rating: 0,
-    lat: formState.lat,
-    lng: formState.lng
-  }
-
-  loading.value = true
-  parkingService
-    .postParking(parkingDTOPost)
-    .then(() => {
-      return new Promise((resolve) => {
+      loading.value = true
+      try {
+        await parkingStore.createParking({
+          ...formState,
+          price: +formState.price.replace(/[^\d.]/g, ''),
+          userId: authStore.user.id
+        })
         setTimeout(() => {
-          resolve()
-        }, 2000)
-      })
-    })
-    .then(() => {
-      loading.value = false
-    })
-    .finally(() => {
-      setTimeout(() => {
-        router.push('/find-your-park')
-      }, 1000)
-    })
+          router.push('/find-your-park')
+        }, 1000)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        loading.value = false
+      }
+    }
+    return {
+      MAP_DEFAULT_CENTER,
+      MAP_DEFAULT_ZOOM,
+      map,
+      formState,
+      loading,
+      handleAutocompletePlaceChanged,
+      handlePostGarage
+    }
+  }
 }
 </script>
 
@@ -143,10 +116,6 @@ function handlePostGarage() {
               v-model="formState.address"
             />
           </div>
-          <div class="register-form-field register-form-field--spaces">
-            <label for="address">Parking spaces available</label>
-            <pv-input-text v-model="formState.spaces" />
-          </div>
         </div>
         <div class="map-container">
           <v-google-map :center="MAP_DEFAULT_CENTER" :zoom="MAP_DEFAULT_ZOOM" v-model:map="map" />
@@ -165,14 +134,7 @@ function handlePostGarage() {
               <label for="height">Height (m):</label>
               <pv-input-text v-model="formState.height" />
             </div>
-            <div class="register-form-field">
-              <label for="startTime">Start time:</label>
-              <pv-input-mask mask="99:99" v-model="formState.startTime" />
-            </div>
-            <div class="register-form-field">
-              <label for="endTime">End time</label>
-              <pv-input-mask mask="99:99" v-model="formState.endTime" />
-            </div>
+
             <div class="register-form-field">
               <label for="phone">Phone number</label>
               <pv-input-mask mask="999-999-999" v-model="formState.phone" />
@@ -181,12 +143,12 @@ function handlePostGarage() {
           <div class="register-form-cta">
             <div class="register-form-field register-form-field--fare">
               <label for="fare">Price per hour</label>
-              <pv-input-mask mask="S/ 99.99" v-model="formState.fare" />
+              <pv-input-mask mask="S/ 99.99" v-model="formState.price" />
               <small>* includes commission</small>
             </div>
             <div class="register-form-field register-form-field--description">
               <label for="description">Description</label>
-              <pv-input-text />
+              <pv-input-text v-model="formState.description" />
             </div>
             <div class="post-container">
               <i v-if="loading" class="pi pi-spin pi-spinner" />

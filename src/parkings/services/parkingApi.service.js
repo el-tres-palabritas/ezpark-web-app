@@ -5,7 +5,7 @@ class ParkingApiService {
   axiosInstance
 
   constructor() {
-    const BASE_URL = 'http://localhost:3000/api/v1'
+    const BASE_URL = 'https://ez-park-api20240627213353.azurewebsites.net/api/v1/parkings'
 
     this.axiosInstance = axios.create({
       baseURL: BASE_URL,
@@ -17,47 +17,24 @@ class ParkingApiService {
   }
 
   async getParkings() {
-    try {
-      const response = await this.axiosInstance.get('/parkings')
-      return response.data
-    } catch (err) {
-      console.error(err)
-    }
+    const response = await this.axiosInstance.get('/')
+    return response.data
   }
 
   async getParkingsById(id) {
-    try {
-      const response = await this.axiosInstance.get(`/parkings?id=${id}`)
-      return response.data
-    } catch (err) {
-      console.error(err)
-    }
+    const response = await this.axiosInstance.get(`/${id}`)
+    return response.data
   }
 
-  async getParkingsLocations() {
-    try {
-      const response = await this.axiosInstance.get('/parkings-locations')
-      return response.data
-    } catch (err) {
-      console.error(err)
-    }
+  async getParkingByUserId(id) {
+    const response = await this.axiosInstance.get(`/userid/${id}`)
+    return response.data
   }
 
-  async postParking({ lat, lng, ...restParking }) {
-    try {
-      await this.axiosInstance.post('/parkings', restParking)
+  async postParking(data) {
+    const response = await this.axiosInstance.post('/', data)
 
-      const location = {
-        id: Math.floor(Math.random() * (1000 - 20 + 1)) + 20,
-        lat,
-        lng,
-        parking_id: restParking.id
-      }
-
-      await this.axiosInstance.post('/parkings-locations', location)
-    } catch (err) {
-      console.error(err)
-    }
+    return response.data
   }
 }
 
