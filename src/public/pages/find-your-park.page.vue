@@ -52,6 +52,7 @@ export default {
       MAP_DEFAULT_ZOOM,
       parkingStore,
       map,
+      loading,
       selectedFare,
       fareOptions: FARE_OPTIONS,
       selectedRating,
@@ -73,40 +74,50 @@ export default {
           price and see the location of the parking lot on the map.
         </p>
       </header>
-      <div class="search-container">
-        <form class="search-form" @submit.prevent>
-          <v-google-autocomplete
-            class="search-input"
-            @placeChanged="handleAutocompletePlaceChanged"
-          />
-          <div class="search-filters">
-            <pv-dropdown
-              class="search-dropdown"
-              placeholder="Filter by fare"
-              v-model="selectedFare"
-              :options="fareOptions"
-            />
-            <pv-dropdown
-              class="search-dropdown"
-              placeholder="Filter by rating"
-              v-model="selectedRating"
-              :options="ratingOptions"
-            />
+      <template v-if="loading">
+        <div class="loading-container">
+          <div>
+            <i class="pi pi-spin pi-spinner loading-icon"></i>
           </div>
+          <p class="loading-complement">Loading parking, please wait a few seconds</p>
+        </div>
+      </template>
+      <template v-else>
+        <div class="search-container">
+          <form class="search-form" @submit.prevent>
+            <v-google-autocomplete
+              class="search-input"
+              @placeChanged="handleAutocompletePlaceChanged"
+            />
+            <div class="search-filters">
+              <pv-dropdown
+                class="search-dropdown"
+                placeholder="Filter by fare"
+                v-model="selectedFare"
+                :options="fareOptions"
+              />
+              <pv-dropdown
+                class="search-dropdown"
+                placeholder="Filter by rating"
+                v-model="selectedRating"
+                :options="ratingOptions"
+              />
+            </div>
 
-          <pv-button label="Search" class="search-btn" icon="pi pi-search" />
-        </form>
-      </div>
-      <div class="map-container">
-        <v-google-map
-          v-if="!loading"
-          :center="MAP_DEFAULT_CENTER"
-          :zoom="MAP_DEFAULT_ZOOM"
-          :markers="parkingStore.parkings"
-          @clickMarker="handleMarkerClick"
-          v-model:map="map"
-        />
-      </div>
+            <pv-button label="Search" class="search-btn" icon="pi pi-search" />
+          </form>
+        </div>
+        <div class="map-container">
+          <v-google-map
+            v-if="!loading"
+            :center="MAP_DEFAULT_CENTER"
+            :zoom="MAP_DEFAULT_ZOOM"
+            :markers="parkingStore.parkings"
+            @clickMarker="handleMarkerClick"
+            v-model:map="map"
+          />
+        </div>
+      </template>
     </section>
   </v-base-layout>
 </template>
