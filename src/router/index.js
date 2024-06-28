@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import LandingPage from '@/landing-page/pages/index.page.vue'
 
 import FindYourParkPage from '@/public/pages/find-your-park.page.vue'
@@ -11,42 +12,82 @@ import LogInPage from '@/auth/pages/login-page.component.vue'
 import SignUpPage from '@/auth/pages/signup-page.component.vue'
 import RecoveryPage from '@/auth/pages/recovery.page.vue'
 
+import useAuth from '@/store/useAuth'
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      component: LandingPage
+      component: LandingPage,
+      meta: {
+        auth: false
+      }
     },
     {
       path: '/login',
-      component: LogInPage
+      component: LogInPage,
+      meta: {
+        auth: false,
+        canOmitAuth: true
+      }
     },
     {
       path: '/signup',
-      component: SignUpPage
+      component: SignUpPage,
+      meta: {
+        auth: false,
+        canOmitAuth: true
+      }
     },
     {
       path: '/recovery',
-      component: RecoveryPage
+      component: RecoveryPage,
+      meta: {
+        auth: false,
+        canOmitAuth: true
+      }
     },
     {
       path: '/find-your-park',
-      component: FindYourParkPage
+      component: FindYourParkPage,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/find-your-park/parking/:id',
-      component: ParkingDetailPage
+      component: ParkingDetailPage,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/register-park',
-      component: RegisterPark
+      component: RegisterPark,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/:pathMatch(.*)*',
-      component: NotFoundPage
+      component: NotFoundPage,
+      meta: {
+        auth: true
+      }
     }
   ]
+})
+
+router.beforeEach((to, _from, next) => {
+  if (to.meta.canOmitAuth && useAuth().isLoggedIn) {
+    next('/find-your-park')
+    return
+  }
+  if (to.meta.auth && !useAuth().isLoggedIn) {
+    next('/login')
+  }
+  next()
 })
 
 export default router

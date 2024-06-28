@@ -1,17 +1,31 @@
 <script>
-export default {
-  name: 'sidebar-component'
-}
-</script>
-
-<script setup>
 import { ref } from 'vue'
 import PvSidebar from 'primevue/sidebar'
 import PvButton from 'primevue/button'
-import 'primeicons/primeicons.css'
 import PvAvatar from 'primevue/avatar'
+import useAuth from '@/store/useAuth'
+import { useRouter } from 'vue-router'
 
-const visible = ref(false)
+export default {
+  name: 'sidebar-component',
+  components: {
+    PvSidebar,
+    PvButton,
+    PvAvatar
+  },
+  setup() {
+    const visible = ref(false)
+    const authStore = useAuth()
+    const router = useRouter()
+
+    const handleSignOut = () => {
+      authStore.logout()
+      router.push('/login')
+    }
+
+    return { visible, authStore, handleSignOut }
+  }
+}
 </script>
 
 <template>
@@ -19,7 +33,7 @@ const visible = ref(false)
     <div class="profile-container">
       <pv-avatar class="profile-avatar" icon="pi pi-user" size="large" shape="square" />
       <div class="profile-stuff">
-        <h2 class="profile-name">Juan Carlos</h2>
+        <h2 class="profile-name">{{ authStore.user.fullName }}</h2>
         <p class="edit-profile">Edit profile</p>
       </div>
     </div>
@@ -51,10 +65,10 @@ const visible = ref(false)
     </div>
     <div class="sign-out-container">
       <div class="sidebar-item">
-        <router-link class="nav-link" to="/">
+        <div class="nav-link" @click="handleSignOut">
           <i class="pi pi-sign-out" />
           <span>Log Out</span>
-        </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +78,7 @@ const visible = ref(false)
         <div class="profile-container">
           <pv-avatar class="profile-avatar" icon="pi pi-user" size="large" shape="square" />
           <div class="profile-stuff">
-            <h2 class="profile-name">Juan Carlos</h2>
+            <h2 class="profile-name">{{ authStore.user.fullName }}</h2>
             <p class="edit-profile">Edit profile</p>
           </div>
         </div>
@@ -96,10 +110,10 @@ const visible = ref(false)
         </div>
         <div class="sign-out-container">
           <div class="sidebar-item">
-            <router-link class="nav-link" to="/">
+            <div class="nav-link" @click="handleSignOut">
               <i class="pi pi-sign-out" />
               <span>Log Out</span>
-            </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -161,6 +175,7 @@ const visible = ref(false)
   gap: 12px;
   align-items: center;
   padding-inline: 32px;
+  cursor: pointer;
 }
 .nav-link:not(.nav-link--active) {
   transition: all 0.15s ease-in;

@@ -1,31 +1,29 @@
 import axios from 'axios'
 
-const http = axios.create({
-  baseURL: 'http://localhost:3000/'
-})
-
 export class AuthService {
-  signUp(fullname, password, email, country, phoneNumber, newsCheck, privacyCheck) {
-    return http.post('/users', {
-      fullname,
-      password,
-      email,
-      country,
-      phoneNumber,
-      newsCheck,
-      privacyCheck
+  constructor() {
+    this.http = axios.create({
+      baseURL: 'https://ez-park-api20240627213353.azurewebsites.net/api/v1/users'
     })
   }
 
   async signIn(email, password) {
-    const response = await http.get(`/users?email=${email}&password=${password}`)
-
-    if (response.data.length === 0) throw new Error('User not found')
+    const response = await this.http.post(`/login`, { email, password })
 
     return response.data
   }
 
-  logout() {
-    localStorage.removeItem('user')
+  async signUp({ firstName, lastName, email, password, dni, phone }) {
+    const response = await this.http.post('/', {
+      email,
+      password,
+      firstName,
+      lastName,
+      dni,
+      phone,
+      dateOfBirth: '2024-06-28T04:57:09.137Z'
+    })
+
+    return response.data
   }
 }

@@ -1,65 +1,40 @@
 <script>
-import { AuthService } from '@/auth/services/auth.service.js'
-
-export default {
-  name: 'sign-in-component'
-}
-</script>
-
-<script setup>
-import GoogleAuthProvider from '@/auth/providers/google-auth.provider'
 import PvInputText from 'primevue/inputtext'
 import PvPassword from 'primevue/password'
 import PvButton from 'primevue/button'
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { AuthService } from '../services/auth.service'
+import useAuth from '@/store/useAuth'
 
-const oauthGoogleProvider = new GoogleAuthProvider()
-oauthGoogleProvider.initialize()
-oauthGoogleProvider.onSignIn((user, accessToken) => {
-  console.log('User signed in:', user)
+export default {
+  name: 'sign-in-component',
+  components: {
+    PvInputText,
+    PvPassword,
+    PvButton
+  },
+  setup() {
+    const router = useRouter()
+    const storeAuth = useAuth()
 
-  fetch('http://localhost:3000/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      id: crypto.randomUUID(),
-      email: user.email,
-      name: user.name,
-      phone: null,
-      password: null,
-      access_token: accessToken
-    })
-  })
-    .then((response) => response.json())
-    .then(() => setTimeout(() => router.push('/find-your-park'), 1500))
-    .catch(console.error)
-})
-const googleSignInBtn = ref(null)
+    const authService = new AuthService()
+    const email = ref('')
+    const password = ref('')
+    const error = ref('')
 
-onMounted(() => oauthGoogleProvider.renderButton(googleSignInBtn.value, 'outline', 368))
+    async function handleLogin() {
+      try {
+        await storeAuth.login(email.value, password.value)
+        error.value = ''
+        router.push('/find-your-park')
+      } catch (err) {
+        error.value = 'User not found. Please check your credentials.'
+        console.error('Error logging in:', err)
+      }
+    }
 
-const router = useRouter()
-
-const authService = new AuthService()
-const email = ref('')
-const password = ref('')
-const error = ref('')
-
-async function handleLogin() {
-  try {
-    await authService.signIn(email.value, password.value)
-
-    error.value = ''
-
-    setTimeout(() => {
-      router.push('/find-your-park')
-    }, 1000)
-  } catch (err) {
-    error.value = 'User not found. Please check your credentials.'
-    console.error('Error logging in:', err)
+    return { authService, email, password, error, handleLogin }
   }
 }
 </script>
@@ -96,7 +71,6 @@ async function handleLogin() {
       <div class="form-item">
         <pv-button class="form-btn" type="submit" id="submit" label="Login" />
       </div>
-      <div ref="googleSignInBtn">mi botón</div>
       <router-link class="forgot-password-link" to="/recovery">Forgot password?</router-link>
       <p class="signup-link">
         Don't have an account yet?

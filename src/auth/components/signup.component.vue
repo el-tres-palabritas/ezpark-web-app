@@ -1,132 +1,169 @@
 <script>
-import { AuthService } from '@/auth/services/auth.service.js'
+import PvInputText from 'primevue/inputtext'
+import PvPassword from 'primevue/password'
+import PvCheckbox from 'primevue/checkbox'
+import PvButton from 'primevue/button'
+import { reactive } from 'vue'
+import useAuth from '@/store/useAuth'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'sign-up-component',
-  data() {
-    return {
-      country: '',
-      fullname: '',
+  components: {
+    PvInputText,
+    PvPassword,
+    PvCheckbox,
+    PvButton
+  },
+  setup() {
+    const router = useRouter()
+    const authStore = useAuth()
+    const formData = reactive({
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
-      phoneNumber: '',
-      newsCheck: '',
-      privacyCheck: '',
-      authService: new AuthService()
-    }
-  },
+      phone: '',
+      dni: '',
+      newsCheck: false,
+      privacyCheck: false
+    })
 
-  created() {},
+    const verifyPassword = () => formData.password !== formData.confirmPassword
 
-  methods: {
-    register(event) {
-      event.preventDefault()
-      this.authService
-        .signUp(
-          this.fullname,
-          this.password,
-          this.email,
-          this.country,
-          this.phoneNumber,
-          this.newsCheck,
-          this.privacyCheck
-        )
-        .then(() => {
-          this.$toast.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Redirecting to login...',
-            life: 2000
-          })
-          setTimeout(() => {
-            this.$router.push('/login')
-          }, 2000)
-        })
-        .catch(() => {
-          this.$toast.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Error while registering user. Please try again.',
-            life: 1000
-          })
-        })
+    const verifyEmptyFields = () => {
+      return (
+        !formData.firstName ||
+        !formData.lastName ||
+        !formData.email ||
+        !formData.password ||
+        !formData.confirmPassword ||
+        !formData.phone ||
+        !formData.dni
+      )
     }
+
+    const handleSubmit = async () => {
+      if (verifyEmptyFields()) return
+
+      if (verifyPassword()) return
+
+      try {
+        await authStore.signUp({
+          dni: formData.dni,
+          email: formData.email,
+          password: formData.password,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phone: formData.phone
+        })
+
+        router.push('/find-your-park')
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    return { handleSubmit, formData }
   }
 }
 </script>
 
-<script setup>
-import PvInputText from 'primevue/inputtext'
-import PvPassword from 'primevue/password'
-import PvCascadeSelect from 'primevue/cascadeselect'
-import PvInputNumber from 'primevue/inputnumber'
-import PvCheckbox from 'primevue/checkbox'
-import PvButton from 'primevue/button'
-</script>
-
 <template>
   <section class="form-container">
-    <form class="form" v-on:submit="register($event)">
+    <form class="form" @submit.prevent="handleSubmit">
       <div class="form-item">
         <div class="logo-container">
           <img alt="Logo" class="logo" src="../../assets/logo.svg" />
         </div>
         <h1 class="form-title">Sign Up</h1>
       </div>
+
       <div class="form-item">
-        <label class="form-label" for="fullname">Full Name</label>
+        <label class="form-label" for="fullname">First Name</label>
         <pv-input-text
-          id="fullname"
+          id="firstName"
           class="form-input"
-          v-model="fullname"
+          v-model="formData.firstName"
           aria-describedby="fullname-help"
         />
       </div>
+
+      <div class="form-item">
+        <label class="form-label" for="fullname">Last Name</label>
+        <pv-input-text
+          id="lastName"
+          class="form-input"
+          v-model="formData.lastName"
+          aria-describedby="fullname-help"
+        />
+      </div>
+
       <div class="form-item">
         <label class="form-label" for="email">E-mail</label>
         <pv-input-text
           id="email"
           class="form-input"
-          v-model="email"
+          v-model="formData.email"
           aria-describedby="email-help"
         />
       </div>
       <div class="duo-container">
         <div class="form-item">
-          <label class="form-label" for="password">Password</label>
-          <pv-password class="form-input" v-model="password" :feedback="false" toggleMask />
+          <label class="form-label" for="phone">DNI</label>
+          <pv-input-text
+            class="form-input"
+            v-model="formData.dni"
+            :useGrouping="false"
+            inputId="withoutgrouping"
+          />
         </div>
         <div class="form-item">
-          <label class="form-label" for="password">Confirm Password</label>
-          <pv-password class="form-input" v-model="confirmPassword" :feedback="false" toggleMask />
+          <label class="form-label" for="phone">Phone Number</label>
+          <pv-input-text
+            class="form-input"
+            v-model="formData.phone"
+            :useGrouping="false"
+            inputId="withoutgrouping"
+          />
         </div>
       </div>
       <div class="duo-container">
         <div class="form-item">
-          <label class="form-label" for="country">Country</label>
-          <pv-cascade-select id="country" class="form-select" v-model="country" />
+          <label class="form-label" for="password">Password</label>
+          <pv-password
+            class="form-input"
+            v-model="formData.password"
+            :feedback="false"
+            toggleMask
+          />
         </div>
         <div class="form-item">
-          <label class="form-label" for="phone">Phone Number</label>
-          <pv-input-number
+          <label class="form-label" for="password">Confirm Password</label>
+          <pv-password
             class="form-input"
-            v-model="phoneNumber"
-            :useGrouping="false"
-            inputId="withoutgrouping"
+            v-model="formData.confirmPassword"
+            :feedback="false"
+            toggleMask
           />
         </div>
       </div>
       <div class="form-item">
         <div class="conditions-container">
           <div class="condition-item">
-            <pv-checkbox class="checkbox" v-model="newsCheck" inputId="condition1" :binary="true" />
+            <pv-checkbox
+              class="checkbox"
+              v-model="formData.newsCheck"
+              inputId="condition1"
+              :binary="true"
+            />
             <label for="condition1">I want to receive news from EzPark via email</label>
           </div>
           <div class="condition-item">
             <pv-checkbox
               class="checkbox"
-              v-model="privacyCheck"
+              v-model="formData.privacyCheck"
               inputId="condition1"
               :binary="true"
             />
