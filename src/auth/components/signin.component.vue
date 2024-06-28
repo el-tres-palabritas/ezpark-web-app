@@ -76,7 +76,6 @@ export default {
         Don't have an account yet?
         <router-link to="/signup">Sign up</router-link>
       </p>
-      <router-link to="/find-your-park"> Continue to the app </router-link>
     </form>
   </section>
 </template>
