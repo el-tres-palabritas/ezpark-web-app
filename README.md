@@ -33,3 +33,9 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### (EXTRA) Remove node_modules with:
+
+```sh
+rm -rf node_modules package-lock.json
+```

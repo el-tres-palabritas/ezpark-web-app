@@ -5,7 +5,7 @@ class ReservationService {
   axiosInstance
 
   constructor() {
-    const BASE_URL = 'https://ez-park-api20240627213353.azurewebsites.net/api/v1/reservations'
+    const BASE_URL = 'https://localhost:3000/api/v1/reservations'
 
     this.axiosInstance = axios.create({
       baseURL: BASE_URL,

@@ -3,7 +3,7 @@ import axios from 'axios'
 export class UserService {
   constructor() {
     this.http = axios.create({
-      baseURL: 'https://ez-park-api20240627213353.azurewebsites.net/api/v1/users'
+      baseURL: 'http://localhost:3000/api/v1/users'
     })
   }
 

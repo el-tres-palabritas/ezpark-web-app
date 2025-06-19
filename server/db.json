@@ -139,6 +139,16 @@
       "newsCheck": "",
       "privacyCheck": "",
       "id": 14
+    },
+    {
+      "email": "carlos.lopez123@example.com",
+      "password": "contra123",
+      "firstName": "Carlos",
+      "lastName": "Lopez",
+      "dni": "12345678",
+      "phone": "911222333",
+      "dateOfBirth": "2024-06-28T04:57:09.137Z",
+      "id": 15
     }
   ],
   "parkings": [

@@ -3,12 +3,12 @@ import axios from 'axios'
 export class AuthService {
   constructor() {
     this.http = axios.create({
-      baseURL: 'https://ez-park-api20240627213353.azurewebsites.net/api/v1/users'
+      baseURL: 'http://localhost:3000/api/v1/users'
     })
   }
 
   async signIn(email, password) {
-    const response = await this.http.post(`/login`, { email, password })
+    const response = await this.http.get(``, { email, password })
 
     return response.data
   }

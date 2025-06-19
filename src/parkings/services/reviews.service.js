@@ -5,7 +5,7 @@ class ReviewService {
   axiosInstance
 
   constructor() {
-    const BASE_URL = 'https://ez-park-api20240627213353.azurewebsites.net/api/v1/reviews'
+    const BASE_URL = 'https://localhost:3000/api/v1/reviews'
 
     this.axiosInstance = axios.create({
       baseURL: BASE_URL,
