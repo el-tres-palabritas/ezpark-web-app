@@ -10,17 +10,27 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+# Steps to run the project:
+
+## 1) Project Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## 2) Initialize fake API
+
+```sh
+npm run server
+```
+
+### 3) Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
+
+# Extra comms:
 
 ### Compile and Minify for Production
 
@@ -34,7 +44,7 @@ npm run build
 npm run lint
 ```
 
-### (EXTRA) Remove node_modules with:
+### Remove node_modules with:
 
 ```sh
 rm -rf node_modules package-lock.json
